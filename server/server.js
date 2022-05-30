@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 require('../backend/db/mongoose')
 const VotingRound = require('../backend/models/votingRound')
@@ -6,7 +7,14 @@ const User = require('../backend/models/user')
 const app = express()
 const port = process.env.PORT
 
+const publicDirectoryPath = path.join(__dirname, '../frontend/public')
 app.use(express.json())
+
+app.use(express.static(publicDirectoryPath))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
+});
 
 app.post('/votingRounds', async (req, res) => {
   const votingRound = new VotingRound(req.body)
