@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon server/server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "build": "cd frontend && npm run build",
+    "install-frontend": "cd frontend && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "server": "node server/server.js",
+    "develop": "concurrently __kill_others_on_fail \"npm run server\" \"npm run start --prefix client\"",
+    "start": "concurrently __kill_others_on_fail \"npm run server\" \"npm run start --prefix client\"",
+    "dev": "env-cmd -f ./config/dev.env nodemon server/server.js"
+    
   },
   "keywords": [],
   "author": "",
