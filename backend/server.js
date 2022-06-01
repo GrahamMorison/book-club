@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 const publicDirectoryPath = path.join(__dirname, '/frontend/build')
 const port = process.env.PORT || 3000
 
-require('./backend/db/mongoose')
 const VotingRound = require('./backend/models/votingRound')
 const User = require('./backend/models/user')
 
