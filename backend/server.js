@@ -6,8 +6,8 @@ const mongoose = require('mongoose')
 const publicDirectoryPath = path.join(__dirname, '/frontend/build')
 const port = process.env.PORT || 3000
 
-const VotingRound = require('./backend/models/votingRound')
-const User = require('./backend/models/user')
+const VotingRound = require('./models/votingRound')
+const User = require('./models/user')
 
 dotenv.config();
 app.use(express.json())
