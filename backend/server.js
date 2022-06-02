@@ -110,7 +110,7 @@ app.get('/bookRequest/:book', async (req, res) => {
   console.log(req.params.book)
 
   const url = 'https://www.googleapis.com/books/v1/volumes?q=' + req.params.book + '&key=' + process.env.GOOGLEBOOKS_API_KEY
-  
+  console.log(url)
   try {
     const response = await axios.get(url)
     console.log(response.data)
