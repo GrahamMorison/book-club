@@ -17,12 +17,6 @@ mongoose.connect(process.env.MONGODB_URL)
   .then(console.log('Connected to Mongo'))
   .catch(err => console.log(err))
 
-app.use(express.static(publicDirectoryPath))
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
-});
-
 app.post('/votingRounds', async (req, res) => {
   const votingRound = new VotingRound(req.body)
 
@@ -148,6 +142,12 @@ app.post('/users', async (req, res) => {
 //     res.status(500).send()
 //   }
 // })
+
+app.use(express.static(publicDirectoryPath))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
+});
 
 app.listen(port, () => {
   console.log('Server is up on port ' + port)

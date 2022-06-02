@@ -28,11 +28,11 @@ export default class Main extends React.Component {
     console.log(e);
     console.log(e);
     const name = e.target[0].value;
-    const res = await fetch(process.env.URL + '/users/' + name);
+    const res = await fetch('/users/' + name);
     console.log(res)
     const data = await res.json()
     if (data.length === 0) {
-      await fetch(process.env.URL + '/users', {
+      await fetch('/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
