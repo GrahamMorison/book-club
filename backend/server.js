@@ -104,6 +104,27 @@ app.get('/users/:name', async (req, res) => {
   }
 })
 
+app.get('/bookRequest/:book', async (req, res) => {
+  console.log(req.params)
+  console.log(req.params.book)
+
+  const url = 'https://www.googleapis.com/books/v1/volumes?q=' + req.params.book + '&key=' + process.env.GOOGLEBOOKS_API_KEY
+  
+  try {
+    const response = await fetch(url)
+    const data = await response.json();
+
+    if (!data) {
+      return res.status(404).send()
+    }
+
+    res.send(data)
+
+  } catch {
+    res.status(500).send()
+  }
+})
+
 app.get('/users/:id', async (req, res) => {
   const _id = req.params.id
   
@@ -147,7 +168,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, 'index.html'));
-});
+}); 
 
 app.listen(port, () => {
   console.log('Server is up on port ' + port)
