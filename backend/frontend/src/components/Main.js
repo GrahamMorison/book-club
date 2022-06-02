@@ -32,7 +32,7 @@ export default class Main extends React.Component {
     console.log(res)
     const data = await res.json()
     if (data.length === 0) {
-      await fetch('/users', {
+      await fetch(process.env.URL + '/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
