@@ -54,7 +54,7 @@ export default class BookSubmissionForm extends React.Component {
     await this.setState({ error })
 
     if (!error) {
-      const res = await fetch('/bookRequest/' + submittedBook);
+      const res = await fetch(`/bookRequest/${submittedBook}`);
       const data = await res.json();
       console.log(data)
       console.log(this.state)

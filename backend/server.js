@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const axios = require('axios')
 const publicDirectoryPath = path.join(__dirname, '/frontend/build')
 const port = process.env.PORT || 3000
 
@@ -111,17 +112,16 @@ app.get('/bookRequest/:book', async (req, res) => {
   const url = 'https://www.googleapis.com/books/v1/volumes?q=' + req.params.book + '&key=' + process.env.GOOGLEBOOKS_API_KEY
   
   try {
-    const response = await fetch(url)
-    const data = await response.json();
-
-    if (!data) {
+    const response = await axios.get(url)
+    console.log(response.data)
+    if (!response) {
       return res.status(404).send()
     }
 
-    res.send(data)
+    res.send(response.data)
 
-  } catch {
-    res.status(500).send()
+  } catch (e) {
+    res.status(500).send('')
   }
 })
 
