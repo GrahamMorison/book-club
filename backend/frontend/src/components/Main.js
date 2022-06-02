@@ -24,9 +24,12 @@ export default class Main extends React.Component {
   handleNameEntered = async (e) => {
     e.preventDefault();
 
+
+    console.log(e);
     console.log(e);
     const name = e.target[0].value;
-    const res = await fetch('/users/' + name);
+    const res = await fetch(process.env.URL + '/users/' + name);
+    console.log(res)
     const data = await res.json()
     if (data.length === 0) {
       await fetch('/users', {
