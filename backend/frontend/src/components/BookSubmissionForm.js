@@ -54,9 +54,7 @@ export default class BookSubmissionForm extends React.Component {
     await this.setState({ error })
 
     if (!error) {
-      const url = 'https://www.googleapis.com/books/v1/volumes?q=' + submittedBook + '&key=' + process.env.GOOGLEBOOKS_API_KEY
-      console.log(url)
-      const res = await fetch(url);
+      const res = await fetch('/bookRequest/' + submittedBook);
       const data = await res.json();
       console.log(data)
       console.log(this.state)
