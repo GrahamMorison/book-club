@@ -63,6 +63,16 @@ const Login = (props) => (
           Login
         </Button>
       </form>
+      
+        <Typography padding={2}>
+        </Typography>
+        <Typography padding={2}>
+          Welcome to the Book Club Tracker! If you are wanting to test out the functionality of the application, log in using "Guest" and there will be some default data already
+          set up for you to interact with the application.
+          
+          If you have any questions, or would like more information, <a href="mailto:rmorison3@gmail.com">you can reach me via email.</a>
+        </Typography>
+      
     </Page>
   </Root>
 )

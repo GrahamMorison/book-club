@@ -26,11 +26,11 @@ export default class Main extends React.Component {
 
 
     console.log(e);
-    console.log(e);
     const name = e.target[0].value;
     const res = await fetch('/users/' + name);
     console.log(res)
     const data = await res.json()
+    console.log(data)
     if (data.length === 0) {
       await fetch('/users', {
         method: 'POST',
@@ -54,21 +54,21 @@ export default class Main extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-      <div>
-          {
-            !this.state.name ? 
-              <Login 
-                handleNameEntered={this.handleNameEntered}
-              /> :
-              <div>  
-                <VotingPage 
-                  name={this.state.name}
-                  getListOfRoundsToVoteOn={this.getListOfRoundsToVoteOn}
-                  handleLogout={this.handleLogout}
-                />
-              </div>
-          }
-      </div>
+        <div>
+            {
+              !this.state.name ? 
+                <Login 
+                  handleNameEntered={this.handleNameEntered}
+                /> :
+                <div>  
+                  <VotingPage 
+                    name={this.state.name}
+                    getListOfRoundsToVoteOn={this.getListOfRoundsToVoteOn}
+                    handleLogout={this.handleLogout}
+                  />
+                </div>
+            }
+        </div>
       </ThemeProvider>
     )
   }
